@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,9 +20,33 @@ public class Main {
         obj2.minSumme(zahlen);
 
         GrosseZahlen obj3 = new GrosseZahlen();
-        int[] nr1 = {9,1,2,3,4,5,6};
-        int[] nr2 = {9,3,4,5,6,7};
+        int[] nr1 = {1,3,0,0,0,0,0,0,0};
+        int[] nr2 = {8,7,0,0,0,0,0,0,0};
         obj3.summe(nr1, nr2);
+        int[] nr3 = {8,3,0,0,0,0,0,0,1};
+        int[] nr4 = {8,2,0,0,0,0,0,0,5};
+        obj3.diff(nr3, nr4);
+        int[] nr5 = {2,3,6,0,0,0,0,0};
+        obj3.multiplik(nr5, 2);
+        obj3.div(nr5, 2);
+
+        Einkaufen obj4 = new Einkaufen();
+        int[] t1 = {40,35,70,15,45};
+        obj4.billigsteTastatur(t1);
+        int[] t2 = {15,20,10,35};
+        int[] u2 = {20,15,40,15};
+        obj4.teuerstenGegenstand(t2, u2);
+        int[] u3 = {15,45,20};
+        obj4.teuerstUSBMarkus(u3, 30);
+        int[] t4 = {40,50,60};
+        int[] u4 = {8,12};
+        obj4.maxGeldbetrag(t4, u4,60);
+        int[] t44 = {60};
+        int[] u44 = {8,12};
+        obj4.maxGeldbetrag(t44, u44,60);
+        int[] t444 = {40,60};
+        int[] u444 = {8,12};
+        obj4.maxGeldbetrag(t444, u444,60);
     }
 }
 
@@ -164,31 +190,13 @@ class GrosseZahlen{
     private int[] n;
 
     public int[] summe(int[] n1, int[] n2){
-        int max_len;
-
-        if(n1.length > n2.length){    //der summe array ist der gleiche grosse wie der grooste array
-            //max_len = n1.length;
-            return berechnenSum(n1, n2);
-        }
-        else{
-            //max_len = n2.length;
-            return berechnenSum(n2, n1);
-        }
-
-
-                                            // wenn er grosser sein muss, dann wir er neu gemacht
-
-        //ne ducem de la capat spre inceput, pana cand se termina nr mai mic, dupa adaugam restu, si sau ce ramane din ala mai amre
-    }
-
-    public int[] berechnenSum(int[] firstNr, int[] secondNr){
         int added = 0, carry=0;
-        int[] sum = new int[firstNr.length];
-        int poz1 = firstNr.length - 1;
-        int poz2 = secondNr.length -1;
+        int[] sum = new int[n1.length];
+        int poz1 = n1.length - 1;
+        int poz2 = n2.length -1;
 
         while(poz2>=0){
-            added=firstNr[poz1]+secondNr[poz2]+carry;
+            added=n1[poz1]+n2[poz2]+carry;
             if(added>9){
                 carry = 1;
             }
@@ -198,17 +206,6 @@ class GrosseZahlen{
             sum[poz1] = added % 10;
             poz1--;
             poz2--;
-        }
-        while(poz1>=0){    //wenn die Zahlen nicht gleich lang sind
-            added=firstNr[poz1]+carry;
-            if(added>9){
-                carry = 1;
-            }
-            else{
-                carry = 0;
-            }
-            sum[poz1] = added % 10;
-            poz1--;
         }
 
         if(carry == 1){                             //wenn wir noch carry haben, dann mussen wir ein grosseres Array machen
@@ -221,6 +218,7 @@ class GrosseZahlen{
                     newSum[i] = sum[i-1];
                 }
             }
+
             /*for(int i=0; i<newSum.length; i++)
                 System.out.println(newSum[i]);*/
             return newSum;
@@ -232,4 +230,204 @@ class GrosseZahlen{
 
         return sum;
     }
+
+    public boolean isSmaller(int[] nr1, int[] nr2){
+        for(int i=0; i<nr1.length; i++){
+            if(nr1[i]<nr2[i]){
+                return true;
+            }
+            else{
+                if(nr1[i]>nr2[i]){
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int[] calcDiff(int[] n1, int[] n2){
+        int d,carry = 0;
+        int[] rez = new int[n1.length];
+
+        for(int i=n1.length-1; i>=0; i--){
+            d = n1[i] - n2[i] - carry;
+            if(d < 0){
+                d = d+10;
+                carry=1;
+            }
+            else {
+                carry = 0;
+            }
+            rez[i] = d;
+        }
+        if(rez[0]==0){
+            int poz = 0;
+            while(rez[poz]==0){  //fur wenn wir mehrere 0 am anfang der nummer haben
+                poz++;
+            }
+            int[] newRez = new int[rez.length - poz];
+            for(int i=0; i<newRez.length; i++) {
+                newRez[i] = rez[i + poz];
+            }
+            /*for(int i=0; i<newRez.length; i++)
+                System.out.println(newRez[i]);*/
+            return newRez;
+        }
+        /*for(int i=0; i<rez.length; i++)
+            System.out.println(rez[i]);*/
+        return rez;
+    }
+
+    public int[] diff(int[] n1, int[] n2){
+        int[] rez = new int[n1.length];
+        if(isSmaller(n1,n2)){
+            rez = calcDiff(n2,n1);
+        }
+        else{
+            rez = calcDiff(n1,n2);
+        }
+        return rez;
+    }
+
+    public int[] multiplik(int[] n1, int nr){
+        int poz = n1.length-1;
+        int[] rez = new int[n1.length];
+        int m, carry = 0;
+
+        while(poz>=0){
+            m = n1[poz] * nr + carry;
+            if(m>9){
+                carry = m/10;
+                m=m%10;
+            }
+            else
+                carry=0;
+            rez[poz] = m;
+            poz--;
+        }
+
+        if(carry!=0){                               //wir brauchen ein grosseres nummer
+            int[] newRez = new int[n1.length +1];
+            for(int i=0; i<newRez.length; i++){
+                if(i==0){
+                    newRez[i]=carry;   //carry kann maximal 8 sein
+                }
+                else{
+                    newRez[i] = rez[i-1];
+                }
+            }
+            /*for(int i=0; i<newRez.length; i++)
+                System.out.println(newRez[i]);*/
+
+            return newRez;
+        }
+
+        /*for(int i=0; i<rez.length; i++)
+            System.out.println(rez[i]);*/
+
+        return rez;
+    }
+
+    public int[] div(int[] n1, int nr){
+        int[] rez = new int[n1.length];
+
+        int poz = 0;
+        int pozRez = 0;
+        int temp = n1[poz];
+
+        while(temp<nr){
+            temp = temp*10+n1[poz+1];    //wir suchen die kleinste stuck der nummer die grosser als nr
+            poz++;
+        }
+
+        while(poz<=n1.length-1){
+            rez[pozRez] = temp/nr;
+            pozRez++;
+            if(poz+1>n1.length-1){
+                break;              //wir brauchen kein temp wenn wir zu ende der nr sind
+            }
+            temp = (temp%nr)*10 + n1[poz+1];
+            poz++;
+        }
+
+        /*for(int i=0; i<rez.length; i++)
+            System.out.println(rez[i]);*/
+        return rez;
+    }
+}
+
+class Einkaufen{
+    int[] tastaturen;
+    int[] USBs;
+    int budget;
+
+    int billigsteTastatur(int[] tastaturen){
+        int min = tastaturen[0];
+        for(int i=1; i<tastaturen.length; i++){
+            if(tastaturen[i] < min){
+                min = tastaturen[i];
+            }
+        }
+        //System.out.println(min);
+        return min;
+    }
+
+    int teuerstenGegenstand(int[] tastaturen, int[] USBs){
+        int max = tastaturen[0];
+        for(int i=1; i<tastaturen.length; i++){
+            if(tastaturen[i]>max){
+                max = tastaturen[i];
+            }
+        }
+        for(int j=0; j<USBs.length; j++){
+            if(USBs[j]>max){
+                max = USBs[j];
+            }
+        }
+        //System.out.println(max);
+        return max;
+    }
+
+    int teuerstUSBMarkus(int[] USBs, int budget){
+        int max = 0;
+        for(int i=0; i< USBs.length; i++){
+            if(USBs[i]>max && USBs[i]<budget){
+                max=USBs[i];
+            }
+        }
+        //System.out.println(max);
+        return max;
+    }
+
+    int maxGeldbetrag(int[] tastaturen, int[] USBs, int budget){
+        Arrays.sort(tastaturen);
+        Arrays.sort(USBs);
+
+        int pozTast = tastaturen.length-1;
+        int pozUsb = USBs.length-1;
+        int t, u;
+
+        while(pozTast>=0){
+            pozUsb = USBs.length-1;
+            while(pozUsb>=0){
+                t=tastaturen[pozTast];
+                u=USBs[pozUsb];
+                if(t+u<=budget){
+                    //System.out.println(t+u);
+                    return t+u;
+                }
+                else{
+                    pozUsb--;
+                }
+            }
+            pozTast--;
+        }
+        //System.out.println("-1");
+        return -1;
+
+
+        //System.out.println(Arrays.toString(tastaturen));        //pus la restu cu liste
+
+    }
+
 }
