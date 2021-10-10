@@ -63,6 +63,12 @@ class Noten{
         this.noten = noten;
     }*/
 
+    /*
+        1.1 ein Array von Noten die nicht ausreichend sind(<40)
+        Vorb: ein Array von int zwischen 0 und 100
+        Nachb: ein Array von int, kleiner als 40, oder null
+        Ausnamen: wenn der array leer ist
+     */
     public int[] nicht_ausreichend(int[] noten){
 
         if(noten.length == 0){           //error wenn es keine noten gibt
@@ -94,6 +100,12 @@ class Noten{
         return nichAusreichNoten;
     }
 
+    /*
+        1.2 das Durschnittlicher wert von ein Array
+        Vorb: ein Array von int zwischen 0 und 100
+        Nachb: ein int
+        Ausnamen: wenn der array leer ist
+    */
     public int durschnitt(int[] noten){
 
         if(noten.length == 0){           //error wenn es keine noten gibt
@@ -112,6 +124,12 @@ class Noten{
         return durschnitt;
     }
 
+    /*
+        1.3 ein Array von abgerundeten Noten, nach den regel
+        Vorb: ein Array von int zwischen 0 und 100
+        Nachb: ein Array von int
+        Ausnamen: wenn der array leer ist
+    */
     int[] abgerundetNoten(int[] noten){
 
         if(noten.length == 0){           //error wenn es keine noten gibt
@@ -143,6 +161,12 @@ class Noten{
         return abgerundetenNoten;
     }
 
+    /*
+        1.4 die maximale wert die im ursprünglichen Array nicht gab
+        Vorb: ein Array von int zwischen 0 und 100
+        Nachb: ein int
+        Ausnamen: wenn der array leer ist
+     */
     int maximalAbgerundet(int[] noten){
 
         if(noten.length == 0){           //error wenn es keine noten gibt
@@ -169,6 +193,12 @@ class Noten{
 class Zahlen{
     private int[] z;
 
+    /*
+        2.1 das maximaler Zahl von ein Array
+        Vorb: ein Array von n positive zahlen
+        Nachb: ein int, der grosste
+        Ausnamen: wenn der array leer ist
+     */
     public int maximal(int[] z){
 
         if(z.length == 0){           //error wenn es keine zahlen gibt
@@ -188,6 +218,12 @@ class Zahlen{
         return max;
     }
 
+    /*
+        2.2 das minimaler Zahl von ein Array
+        Vorb: ein Array von n positive zahlen
+        Nachb: ein int, der kleinste
+        Ausnamen: wenn der array leer ist
+     */
     public int minimal(int[] z){
 
         if(z.length == 0){           //error, wenn es keine zahlen gibt
@@ -207,6 +243,12 @@ class Zahlen{
         return min;
     }
 
+    /*
+        2.3 die maximale Summe von n-1 Zahlen in den Array (ohne der min, einmal)
+        Vorb: ein Array von n positive zahlen
+        Nachb: ein int
+        Ausnamen: wenn der array leer ist
+    */
     public int maxSumme(int[] z){
 
         if(z.length == 0){           //error, wenn es keine zahlen gibt
@@ -231,6 +273,12 @@ class Zahlen{
         return summe;
     }
 
+    /*
+        2.3 die minimale Summe von n-1 Zahlen in den Array (ohne der max, einmal)
+        Vorb: ein Array von n positive zahlen
+        Nachb: ein int
+        Ausnamen: wenn der array leer ist
+    */
     public int minSumme(int[] z){
 
         if(z.length == 0){           //error, wenn es keine zahlen gibt
@@ -259,6 +307,12 @@ class Zahlen{
 class GrosseZahlen{
     private int[] n;
 
+    /*
+        3.1 die Summe zwei grosse zahlen, addiert eine ziffre nach einandere, mit carry
+        Vorb: 2 Array von ziffren, gleicher lange
+        Nachb: ein Array von ziffren, kann eine grossere lange als der vorherigen haben
+        Ausnamen: wenn die arrays leer sind, wenn sie nicht denselben lange haben
+    */
     public int[] summe(int[] n1, int[] n2){
 
         if(n1.length == 0 || n2.length == 0 || n1.length!=n2.length){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
@@ -306,7 +360,7 @@ class GrosseZahlen{
         return sum;
     }
 
-    //die zahlen gaben die gleiche lange
+    //prufen welche die groose zahlen grosser ist
     public boolean isSmaller(int[] nr1, int[] nr2){
         for(int i=0; i<nr1.length; i++){
             if(nr1[i]<nr2[i]){            //wenn ein der ziffern auf denselben position kleiner ist
@@ -351,6 +405,12 @@ class GrosseZahlen{
         return rez;
     }
 
+    /*
+        3.2 die Differenz zwei grosse zahlen, abgenomen eine ziffer nach einandere, mit carry - der kleinere aus der grossere
+        Vorb: 2 Array von ziffren, gleicher lange
+        Nachb: ein Array von ziffren, kann eine kleinere lange als der vorherigen haben
+        Ausnahmen: wenn die arrays leer sind, wenn sie nicht denselben lange haben
+    */
     public int[] diff(int[] n1, int[] n2){
 
         if(n1.length == 0 || n2.length == 0 || n1.length!=n2.length){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
@@ -371,6 +431,12 @@ class GrosseZahlen{
         return rez;
     }
 
+    /*
+        3.3 die Multiplikation ein grossen zahlen, mit eine Ziffer, eine ziffer nach einandere, mit carry
+        Vorb: 1 Array von ziffern und 1 ziffer
+        Nachb: ein Array von ziffern, kann eine grossere lange als der vorherigen haben
+        Ausnahmen: wenn der array leer ist
+    */
     public int[] multiplik(int[] n1, int nr){
 
         if(n1.length == 0){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
@@ -415,6 +481,12 @@ class GrosseZahlen{
         return rez;
     }
 
+    /*
+        3.4 die Division ein grossen zahlen, mit eine Ziffer, eine ziffer nach einandere, mit carry
+        Vorb: 1 Array von ziffern und 1 ziffer
+        Nachb: ein Array von ziffern, kann eine kleinere lange als der vorherigen haben
+        Ausnahmen: wenn der array leer ist
+    */
     public int[] div(int[] n1, int nr){
 
         if(n1.length == 0){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
@@ -454,6 +526,12 @@ class Einkaufen{
     int[] USBs;
     int budget;
 
+    /*
+        4.1 finden der kleinste zahl, in eine liste von tastatur preise
+        Vorb: 1 Array von int zahlen
+        Nachb: ein int
+        Ausnahmen: wenn der array leer ist
+    */
     int billigsteTastatur(int[] tastaturen){
 
         if(tastaturen.length == 0){           //error, wenn es keine preise gibt
@@ -473,6 +551,12 @@ class Einkaufen{
         return min;
     }
 
+    /*
+        4.2 finden die grosste zahl in 2 liste - von tastatur preise und USBs preise
+        Vorb: 2 Array von int zahlen
+        Nachb: ein int
+        Ausnahmen: wenn ein der beiden arrays leer ist
+    */
     int teuerstenGegenstand(int[] tastaturen, int[] USBs){
 
         if(tastaturen.length == 0 || USBs.length ==0){           //error, wenn es keine preise gibt
@@ -497,6 +581,12 @@ class Einkaufen{
         return max;
     }
 
+    /*
+        4.3 finden die grosste zahl in eine liste von tastatur preise, aber der kleiner als den gegebenen zahl ist
+        Vorb: 1 Array von int zahlen, ein int
+        Nachb: ein int
+        Ausnahmen: wenn der array leer ist
+    */
     int teuerstUSBMarkus(int[] USBs, int budget){
 
         if(USBs.length == 0){           //error, wenn es keine preise gibt
@@ -516,6 +606,12 @@ class Einkaufen{
         return max;
     }
 
+    /*
+        4.4 finden die teuerste combination von tastatur un USB, der kleiner gleich das gegebenen zahl - das Budget ist
+        Vorb: 2 Arrays von int zahlen, ein int
+        Nachb: ein int
+        Ausnahmen: wenn der array leer ist
+    */
     int maxGeldbetrag(int[] tastaturen, int[] USBs, int budget){
 
         if(tastaturen.length == 0 || USBs.length ==0){           //error, wenn es keine preise gibt
