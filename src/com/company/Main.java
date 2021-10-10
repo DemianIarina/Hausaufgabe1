@@ -35,11 +35,11 @@ public class Main {
         int[] nr33 = {8,3,0,0,0,0,0,0,1};
         int[] nr44 = {8,2,0,0,0,0,0,0,5};
         System.out.println(Arrays.toString(obj3.diff(nr33, nr44)));   //wenn der rez mit 2 ziffern kleiner ist
-        int[] nr5 = {2,3,6,0,0,0,0,0};
+        int[] nr5 = {2,3,6,0,0,0,0,0,0};
         System.out.println(Arrays.toString(obj3.multiplik(nr5, 2)));
         System.out.println(Arrays.toString(obj3.multiplik(nr5, 10)));  //wenn der rez mit 2 ziffer grosser ist
-        //System.out.println(Arrays.toString(obj3.div(nr5, 2)));
-        //System.out.println(Arrays.toString(obj3.div(nr5, 100)));
+        System.out.println(Arrays.toString(obj3.div(nr5, 2)));
+        System.out.println(Arrays.toString(obj3.div(nr5, 12)));       //wenn de rez kurzer ist
 
         Einkaufen obj4 = new Einkaufen();
         int[] t1 = {40,35,70,15,45};
@@ -489,6 +489,13 @@ class GrosseZahlen{
             }
             temp = (temp%nr)*10 + n1[poz+1];
             poz++;
+        }
+        if(pozRez<n1.length){           //wenn der dividirte zahl kurzer ist als der originales nr
+            int[] newRez = new int[n1.length - (n1.length - pozRez)];
+            for(int i=0; i<newRez.length; i++){
+                    newRez[i] = rez[i];          //wir kopieren von anfang an
+            }
+            return newRez;
         }
 
         //System.out.println(Arrays.toString(rez));
