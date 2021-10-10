@@ -8,58 +8,63 @@ public class Main {
 	    Noten obj1 = new Noten();
         int[] note = {56,23, 78, 44, 9, 100};
         int[] note2 = {55, 100};
-        obj1.nicht_ausreichend(note);
-        //obj1.nicht_ausreichend(note2);
-        obj1.durschnitt(note);
-        obj1.abgerundetNoten(note);
-        obj1.maximalAbgerundet(note);
+        System.out.println(Arrays.toString(obj1.nicht_ausreichend(note)));
+        obj1.nicht_ausreichend(note2);   //wenn es keine nicht ausreichende noten gibt
+        System.out.println(obj1.durchschnitt(note));
+        System.out.println(Arrays.toString(obj1.abgerundetNoten(note)));
+        System.out.println(obj1.maximalAbgerundet(note));
 
         Zahlen obj2 = new Zahlen();
         int[] zahlen = {4,8,3,10,17};
         int[] zahlen2 = {1,1,1,1,1};
         int[] zahlen3 = {1,2,3,3,1};
-        obj2.maximal(zahlen);
-        obj2.minimal(zahlen);
-        obj2.maxSumme(zahlen);
-        //obj2.maxSumme(zahlen2);
-        obj2.minSumme(zahlen);
-        //obj2.minSumme(zahlen3);
+        System.out.println(obj2.maximal(zahlen));
+        System.out.println(obj2.minimal(zahlen));
+        System.out.println(obj2.maxSumme(zahlen));
+        System.out.println(obj2.maxSumme(zahlen2));   //wenn der min mehrere mal erscheint
+        System.out.println(obj2.minSumme(zahlen));
+        System.out.println(obj2.minSumme(zahlen3));   //wenn der max mehrere mal erscheint
 
         GrosseZahlen obj3 = new GrosseZahlen();
         int[] nr1 = {1,3,0,0,0,0,0,0,0};
         int[] nr2 = {8,7,0,0,0,0,0,0,0};
-        obj3.summe(nr1, nr2);
-        int[] nr3 = {8,3,0,0,0,0,0,0,1};
-        int[] nr4 = {8,2,0,0,0,0,0,0,5};
-        obj3.diff(nr3, nr4);
+        System.out.println(Arrays.toString(obj3.summe(nr1, nr2)));
+        int[] nr3 = {8,3,0,0,0,0,0,0,0};
+        int[] nr4 = {5,4,0,0,0,0,0,0,0};
+        System.out.println(Arrays.toString(obj3.diff(nr3, nr4)));
+        int[] nr33 = {8,3,0,0,0,0,0,0,1};
+        int[] nr44 = {8,2,0,0,0,0,0,0,5};
+        System.out.println(Arrays.toString(obj3.diff(nr33, nr44)));   //wenn der rez mit 2 ziffern kleiner ist
         int[] nr5 = {2,3,6,0,0,0,0,0};
-        obj3.multiplik(nr5, 2);
-        obj3.div(nr5, 2);
+        System.out.println(Arrays.toString(obj3.multiplik(nr5, 2)));
+        System.out.println(Arrays.toString(obj3.multiplik(nr5, 10)));  //wenn der rez mit 2 ziffer grosser ist
+        //System.out.println(Arrays.toString(obj3.div(nr5, 2)));
+        //System.out.println(Arrays.toString(obj3.div(nr5, 100)));
 
         Einkaufen obj4 = new Einkaufen();
         int[] t1 = {40,35,70,15,45};
-        obj4.billigsteTastatur(t1);
+        System.out.println(obj4.billigsteTastatur(t1));
         int[] t2 = {15,20,10,35};
         int[] u2 = {20,15,40,15};
-        obj4.teuerstenGegenstand(t2, u2);
+        System.out.println(obj4.teuerstenGegenstand(t2, u2));
         int[] u3 = {15,45,20};
-        obj4.teuerstUSBMarkus(u3, 30);
+        System.out.println(obj4.teuerstUSBMarkus(u3, 30));
         int[] t4 = {40,50,60};
         int[] u4 = {8,12};
-        obj4.maxGeldbetrag(t4, u4,60);
+        System.out.println(obj4.maxGeldbetrag(t4, u4,60));
         int[] t44 = {60};
         int[] u44 = {8,12};
-        obj4.maxGeldbetrag(t44, u44,60);
+        System.out.println(obj4.maxGeldbetrag(t44, u44,60));
         int[] t444 = {40,60};
         int[] u444 = {8,12};
-        obj4.maxGeldbetrag(t444, u444,60);
+        System.out.println(obj4.maxGeldbetrag(t444, u444,60));
     }
 }
 
 class Noten{
-    private int[] noten;
+    /*private int[] noten;
 
-    /*public Noten(int[] noten){
+    public Noten(int[] noten){
         this.noten = noten;
     }*/
 
@@ -67,11 +72,11 @@ class Noten{
         1.1 ein Array von Noten die nicht ausreichend sind(<40)
         Vorb: ein Array von int zwischen 0 und 100
         Nachb: ein Array von int, kleiner als 40, oder null
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
      */
     public int[] nicht_ausreichend(int[] noten){
 
-        if(noten.length == 0){           //error wenn es keine noten gibt
+        if(noten.length == 0){           //error, wenn es keine noten gibt
             System.err.println("Keine noten gegeben");
             return null;
         }
@@ -80,7 +85,7 @@ class Noten{
         int pos = 0, len = 0;
         for (int i=0; i<noten.length; i++)
             if(noten[i]<40) {
-                int newarr[] = new int[len + 1];   //wir machen ein neuen Array, mit den geeignete lange
+                int newarr[] = new int[len + 1];   //wir machen einen neuen Array, mit den geeignete lange
                 for (int j = 0; j < len; j++)
                     newarr[j] = nichAusreichNoten[j];
                 len++;
@@ -90,10 +95,7 @@ class Noten{
                 pos++;
             }
 
-        /*for(int i=0; i<nichAusreichNoten.length; i++)
-            System.out.println(nichAusreichNoten[i]);*/
-
-        if(nichAusreichNoten.length ==0){        //error wenn es keine solche noten gibt
+        if(nichAusreichNoten.length ==0){        //error, wenn es keine solche noten gibt
             System.out.println("Keine nicht ausreichende Noten");
             return null;
         }
@@ -101,47 +103,45 @@ class Noten{
     }
 
     /*
-        1.2 das Durschnittlicher wert von ein Array
+        1.2 der durchschnittliche wert von ein Array
         Vorb: ein Array von int zwischen 0 und 100
         Nachb: ein int
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
     */
-    public int durschnitt(int[] noten){
+    public int durchschnitt(int[] noten){
 
-        if(noten.length == 0){           //error wenn es keine noten gibt
+        if(noten.length == 0){           //error, wenn es keine noten gibt
             System.err.println("Keine noten gegeben");
             return 0;
         }
 
-        int durschnitt, summe = 0;
-
+        int durchschnitt, summe = 0;
         for(int i=0; i<noten.length; i++){   //wir machen die summe aller noten
             summe = summe+noten[i];
         }
 
-        durschnitt = summe/noten.length;
-        //System.out.println(durschnitt);
-        return durschnitt;
+        durchschnitt = summe/noten.length;
+        return durchschnitt;
     }
 
     /*
         1.3 ein Array von abgerundeten Noten, nach den regel
         Vorb: ein Array von int zwischen 0 und 100
         Nachb: ein Array von int
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
     */
     int[] abgerundetNoten(int[] noten){
 
-        if(noten.length == 0){           //error wenn es keine noten gibt
+        if(noten.length == 0){           //error, wenn es keine noten gibt
             System.err.println("Keine noten gegeben");
             return null;
         }
 
         int[] abgerundetenNoten = new int[noten.length];
         for(int i=0; i<noten.length; i++){
-            if(noten[i]>=38){                        //wir abrunden, nur wenn die Note groesser gleich 38 ist
+            if(noten[i]>=38){                        //wir abrunden, nur wenn die Note grosser gleich 38 ist
                 int multiplu5 = noten[i];
-                while(multiplu5 % 5 != 0){           //wir finden den nachsten multipel von 5
+                while(multiplu5 % 5 != 0){           //wir finden den nächsten multipel von 5
                     multiplu5++;
                 }
                 if(multiplu5 - noten[i] < 3){        //wenn die Differenz weniger als 3 ist, dann wird abgerundet
@@ -155,9 +155,6 @@ class Noten{
                 abgerundetenNoten[i]=noten[i];
             }
         }
-
-        //System.out.println(Arrays.toString(abgerundetenNoten));
-
         return abgerundetenNoten;
     }
 
@@ -165,11 +162,11 @@ class Noten{
         1.4 die maximale wert die im ursprünglichen Array nicht gab
         Vorb: ein Array von int zwischen 0 und 100
         Nachb: ein int
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
      */
     int maximalAbgerundet(int[] noten){
 
-        if(noten.length == 0){           //error wenn es keine noten gibt
+        if(noten.length == 0){           //error, wenn es keine noten gibt
             System.err.println("Keine noten gegeben");
             return 0;
         }
@@ -183,25 +180,26 @@ class Noten{
                 }
             }
         }
-
-        //System.out.println(max);
-
         return max;
     }
 }
 
 class Zahlen{
-    private int[] z;
+    /*private int[] z;
+
+    public Zahlen(int[] z){
+        this.z = z;
+    }*/
 
     /*
-        2.1 das maximaler Zahl von ein Array
+        2.1 das maximal Zahl von ein Array
         Vorb: ein Array von n positive zahlen
         Nachb: ein int, der grosste
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
      */
     public int maximal(int[] z){
 
-        if(z.length == 0){           //error wenn es keine zahlen gibt
+        if(z.length == 0){           //error, wenn es keine zahlen gibt
             System.err.println("Keine zahlen gegeben");
             return 0;
         }
@@ -212,17 +210,14 @@ class Zahlen{
                 max = z[i];
             }
         }
-
-        //System.out.println(max);
-
         return max;
     }
 
     /*
-        2.2 das minimaler Zahl von ein Array
+        2.2 das minimal Zahl von ein Array
         Vorb: ein Array von n positive zahlen
         Nachb: ein int, der kleinste
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
      */
     public int minimal(int[] z){
 
@@ -237,9 +232,6 @@ class Zahlen{
                 min=z[i];
             }
         }
-
-        //System.out.println(min);
-
         return min;
     }
 
@@ -247,7 +239,7 @@ class Zahlen{
         2.3 die maximale Summe von n-1 Zahlen in den Array (ohne der min, einmal)
         Vorb: ein Array von n positive zahlen
         Nachb: ein int
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
     */
     public int maxSumme(int[] z){
 
@@ -267,17 +259,14 @@ class Zahlen{
                 summe = summe + z[i];
             }
         }
-
-        //System.out.println(summe);
-
         return summe;
     }
 
     /*
-        2.3 die minimale Summe von n-1 Zahlen in den Array (ohne der max, einmal)
+        2.4 die minimale Summe von n-1 Zahlen in den Array (ohne der max, einmal)
         Vorb: ein Array von n positive zahlen
         Nachb: ein int
-        Ausnamen: wenn der array leer ist
+        Ausnahmen: wenn der array leer ist
     */
     public int minSumme(int[] z){
 
@@ -297,30 +286,31 @@ class Zahlen{
                 summe = summe + z[i];
             }
         }
-
-       //System.out.println(summe);
-
         return summe;
     }
 }
 
 class GrosseZahlen{
-    private int[] n;
+    /*private int[] n;
+
+    public GrosseZahlen(int[] n){
+        this.n = n;
+    }*/
 
     /*
-        3.1 die Summe zwei grosse zahlen, addiert eine ziffre nach einandere, mit carry
-        Vorb: 2 Array von ziffren, gleicher lange
-        Nachb: ein Array von ziffren, kann eine grossere lange als der vorherigen haben
-        Ausnamen: wenn die arrays leer sind, wenn sie nicht denselben lange haben
+        3.1 die Summe zwei grosse zahlen, addiert eine ziffer nach ein andere, mit carry
+        Vorb: 2 Array von ziffern, gleicher lange
+        Nachb: ein Array von ziffern, kann eine grosser lange als der vorherigen haben
+        Ausnahmen: wenn die arrays leer sind, wenn sie nicht denselben lange haben
     */
     public int[] summe(int[] n1, int[] n2){
 
-        if(n1.length == 0 || n2.length == 0 || n1.length!=n2.length){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
+        if(n1.length == 0 || n2.length == 0 || n1.length!=n2.length){           //error, wenn es keine Zahlen gegeben sind, wenn sie nicht gleich lang sind
             System.err.println("Die gegebene Zahlen sind nicht gut");
             return null;
         }
 
-        int added = 0, carry=0;
+        int added, carry=0;
         int[] sum = new int[n1.length];
         int poz1 = n1.length - 1;                  //beginnen am Ende der beiden arrays
         int poz2 = n2.length -1;
@@ -348,19 +338,13 @@ class GrosseZahlen{
                     newSum[i] = sum[i-1];           //kopieren den rest des Arrays
                 }
             }
-
-            //System.out.println(Arrays.toString(newSum));
-
             return newSum;
 
         }
-
-        //System.out.println(Arrays.toString(sum));
-
         return sum;
     }
 
-    //prufen welche die groose zahlen grosser ist
+    //prüfen welchen zahlen grosser ist, ziffer nach ziffer
     public boolean isSmaller(int[] nr1, int[] nr2){
         for(int i=0; i<nr1.length; i++){
             if(nr1[i]<nr2[i]){            //wenn ein der ziffern auf denselben position kleiner ist
@@ -372,16 +356,16 @@ class GrosseZahlen{
                 }
             }
         }
-        return false;     //wenn die zahlen = sind
+        return false;     //wenn die zahlen gleich sind
     }
 
     public int[] calcDiff(int[] n1, int[] n2){
         int d,carry = 0;
         int[] rez = new int[n1.length];
 
-        for(int i=n1.length-1; i>=0; i--){     //von ende der beiden zahlen
+        for(int i=n1.length-1; i>=0; i--){     //von Ende der beiden zahlen
             d = n1[i] - n2[i] - carry;
-            if(d < 0){        //wenn die diff zu klein ist, dann leihen wir ein 1 von den nachsten ziffern
+            if(d < 0){        //wenn die diff zu klein ist, dann leihen wir ein 1 von den nächsten ziffern
                 d = d+10;
                 carry=1;
             }
@@ -393,7 +377,7 @@ class GrosseZahlen{
 
         if(rez[0]==0){
             int poz = 0;
-            while(rez[poz]==0){         //fur wenn wir mehrere 0 am anfang der nummer haben
+            while(rez[poz]==0){         //fur, wenn wir mehrere 0 am anfang der nummer haben
                 poz++;
             }
             int[] newRez = new int[rez.length - poz];
@@ -406,14 +390,14 @@ class GrosseZahlen{
     }
 
     /*
-        3.2 die Differenz zwei grosse zahlen, abgenomen eine ziffer nach einandere, mit carry - der kleinere aus der grossere
-        Vorb: 2 Array von ziffren, gleicher lange
-        Nachb: ein Array von ziffren, kann eine kleinere lange als der vorherigen haben
+        3.2 die Differenz zwei grosse zahlen, subtrahiert eine ziffer nach ein andere, mit carry - der kleinere aus der grossere
+        Vorb: 2 Array von ziffern, gleicher lange
+        Nachb: ein Array von ziffern, kann eine kleinere lange als der vorherigen haben
         Ausnahmen: wenn die arrays leer sind, wenn sie nicht denselben lange haben
     */
     public int[] diff(int[] n1, int[] n2){
 
-        if(n1.length == 0 || n2.length == 0 || n1.length!=n2.length){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
+        if(n1.length == 0 || n2.length == 0 || n1.length!=n2.length){           //error, wenn es keine Zahlen gegeben sind, wenn sie nicht gleich lang sind
             System.err.println("Die gegebene Zahlen sind nicht gut");
             return null;
         }
@@ -425,21 +409,18 @@ class GrosseZahlen{
         else{
             rez = calcDiff(n1,n2);
         }
-
-        //System.out.println(Arrays.toString(rez));
-
         return rez;
     }
 
     /*
-        3.3 die Multiplikation ein grossen zahlen, mit eine Ziffer, eine ziffer nach einandere, mit carry
+        3.3 die Multiplikation ein grosse zahl, mit einer Ziffer, eine ziffer nach ein andere, mit carry
         Vorb: 1 Array von ziffern und 1 ziffer
         Nachb: ein Array von ziffern, kann eine grossere lange als der vorherigen haben
         Ausnahmen: wenn der array leer ist
     */
     public int[] multiplik(int[] n1, int nr){
 
-        if(n1.length == 0){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
+        if(n1.length == 0){           //error, wenn es keine Zahlen gegeben sind, wenn sie nicht gleich lang sind
             System.err.println("Die gegeben Zahl ist nicht gut");
             return null;
         }
@@ -471,25 +452,20 @@ class GrosseZahlen{
                     newRez[i] = rez[i-1];
                 }
             }
-            //System.out.println(Arrays.toString(newRez));
-
             return newRez;
         }
-
-        //System.out.println(Arrays.toString(rez));
-
         return rez;
     }
 
     /*
-        3.4 die Division ein grossen zahlen, mit eine Ziffer, eine ziffer nach einandere, mit carry
+        3.4 die Division ein grosse zahl, mit einer Ziffer, eine ziffer nach ein andere, mit carry
         Vorb: 1 Array von ziffern und 1 ziffer
         Nachb: ein Array von ziffern, kann eine kleinere lange als der vorherigen haben
         Ausnahmen: wenn der array leer ist
     */
     public int[] div(int[] n1, int nr){
 
-        if(n1.length == 0){           //error, wenn es keine Zahlen gegeben sind,wenn sie nicht gleich lang sind
+        if(n1.length == 0){           //error, wenn es keine Zahlen gegeben sind, wenn sie nicht gleich lang sind
             System.err.println("Die gegeben Zahl ist nicht gut");
             return null;
         }
@@ -509,7 +485,7 @@ class GrosseZahlen{
             rez[pozRez] = temp/nr;
             pozRez++;
             if(poz+1>n1.length-1){
-                break;                   //wir brauchen kein temp wenn wir zu ende der nr sind
+                break;                   //wir brauchen kein temp, wenn wir zu Ende der nr sind
             }
             temp = (temp%nr)*10 + n1[poz+1];
             poz++;
@@ -522,9 +498,15 @@ class GrosseZahlen{
 }
 
 class Einkaufen{
-    int[] tastaturen;
+    /*int[] tastaturen;
     int[] USBs;
     int budget;
+
+    public Einkaufen(int[] tastaturen, int [] USBs, int budget){
+        this.tastaturen = tastaturen;
+        this.USBs = USBs;
+        this.budget = budget;
+    }*/
 
     /*
         4.1 finden der kleinste zahl, in eine liste von tastatur preise
@@ -545,9 +527,6 @@ class Einkaufen{
                 min = tastaturen[i];
             }
         }
-
-        //System.out.println(min);
-
         return min;
     }
 
@@ -575,9 +554,6 @@ class Einkaufen{
                 max = USBs[j];
             }
         }
-
-        //System.out.println(max);
-
         return max;
     }
 
@@ -600,9 +576,6 @@ class Einkaufen{
                 max=USBs[i];
             }
         }
-
-        //System.out.println(max);
-
         return max;
     }
 
@@ -632,9 +605,6 @@ class Einkaufen{
                 t=tastaturen[pozTast];
                 u=USBs[pozUsb];
                 if(t+u<=budget){           //wenn die aktuelle preise, kleiner gleich der budget sind
-
-                    //System.out.println(t+u);
-
                     return t+u;
                 }
                 else{
@@ -643,8 +613,6 @@ class Einkaufen{
             }
             pozTast--;
         }
-
-        //System.out.println("-1");
         return -1;
 
     }
